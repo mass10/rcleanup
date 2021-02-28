@@ -13,7 +13,6 @@ pub fn input_line() -> String {
 }
 
 /// プロンプトを出してユーザー確認を得ます。
-#[allow(unused)]
 fn confirm() -> bool {
 	let answer = input_line().to_uppercase();
 	return match answer.as_str() {
@@ -23,11 +22,16 @@ fn confirm() -> bool {
 	};
 }
 
+/// 標準出力をフラッシュします。
 fn flush() {
 	use std::io::Write;
 	std::io::stdout().flush().unwrap();
 }
 
+/// プロンプトを表示します。
+///
+/// ### Arguments
+/// `path` パス
 fn prompt(path: &str) -> bool {
 	println!("[QUESTION] ディレクトリを削除しますか？ {}", path);
 	print!("(y/N)> ");
@@ -51,6 +55,9 @@ fn remove_dir_all(path: &str) -> std::result::Result<(), Box<dyn std::error::Err
 }
 
 /// ディレクトリー配下を走査します。
+///
+/// ### Arguments
+/// `path` パス
 fn find_file(path: &str) -> std::result::Result<(), Box<dyn std::error::Error>> {
 	// 存在確認
 	let source_path = std::path::Path::new(path);
