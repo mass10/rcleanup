@@ -42,7 +42,7 @@ fn find_file(path: &str) -> std::result::Result<(), Box<dyn std::error::Error>> 
 ///
 /// ### Arguments
 /// `path` 起点のパス
-fn erase_node_modules_r(path: &str) -> std::result::Result<(), Box<dyn std::error::Error>> {
+fn rcleanup(path: &str) -> std::result::Result<(), Box<dyn std::error::Error>> {
 	find_file(path)?;
 	return Ok(());
 }
@@ -54,17 +54,19 @@ impl Application {
 	}
 
 	/// アプリケーションを実行します。
+	///
+	/// ### Arguments
+	/// `args` 走査の起点となるパスを指定します。複数指定することもできます。
 	pub fn run(&self, args: &Vec<String>) -> std::result::Result<(), std::boxed::Box<dyn std::error::Error>> {
+		// ディレクトリーのクリーンアップ
 		for arg in args {
-			// node_modules ディレクトリをすべて削除
-			let result = erase_node_modules_r(arg.as_str());
+			let result = rcleanup(arg.as_str());
 			if result.is_err() {
 				println!("[ERROR] {}", result.err().unwrap());
 				return Ok(());
 			}
 		}
 
-		std::thread::sleep(std::time::Duration::from_millis(2500));
 		return Ok(());
 	}
 }
