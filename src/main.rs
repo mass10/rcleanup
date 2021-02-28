@@ -1,5 +1,6 @@
 mod application;
 
+/// 使用方法を表示します。
 fn usage() {
 	println!("USAGE:");
 	println!("    rcleanup {{location}}");
