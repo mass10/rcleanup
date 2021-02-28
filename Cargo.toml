@@ -1,6 +1,6 @@
 [package]
 name = "rcleanup"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Irisawa Masaru <irisawa.masaru@gmail.com>"]
 edition = "2018"
 
