@@ -1,3 +1,4 @@
+/// アプリケーション定義のエラー
 #[derive(Debug, Clone)]
 pub struct ApplicationError {
 	/// エラーメッセージ
